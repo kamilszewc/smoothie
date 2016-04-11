@@ -1,0 +1,97 @@
+﻿<Window x:Class="Smoothie.GhostParticleSetupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Ghost particles setup" Height="380" Width="450">
+    <StackPanel>
+        <GroupBox Header="Velocity" Margin="5,5,5,5" Width="420">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            
+                <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">X</Label>
+                <Label Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center">Y</Label>
+
+                <Image Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Source="Images\cN.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocityNX" Grid.Column="1" Grid.Row="1" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocityNY" IsEnabled="False" Grid.Column="2" Grid.Row="1" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80"/>
+
+
+                <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="Images\cE.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocityEX" IsEnabled="False" Grid.Column="1" Grid.Row="2" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocityEY" Grid.Column="2" Grid.Row="2" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80"/>
+
+
+                <Image Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Source="Images\cS.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocitySX" Grid.Column="1" Grid.Row="3" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocitySY" IsEnabled="False" Grid.Column="2" Grid.Row="3" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80"/>
+
+
+                <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="Images\cW.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocityWX" IsEnabled="False" Grid.Column="1" Grid.Row="4" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80" Margin="0,0,0,5"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownVelocityWY" Grid.Column="2" Grid.Row="4" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80" Margin="0,0,0,5"/>
+            
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Temperature" Margin="5,10,5,5" Width="420">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Source="Images\cN.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <Image Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Source="Images\cE.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <Image Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Source="Images\cS.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <Image Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" Source="Images\cW.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+
+                <Label Grid.Column="0" Grid.Row="1">Type</Label>
+                <ComboBox Grid.Column="1" Grid.Row="1" Name="ComboBoxDesignerTemperatureTypeN" SelectedIndex="1" SelectionChanged="ComboBoxDesignerTemperatureTypeN_SelectionChanged">
+                    <ComboBoxItem>Constant</ComboBoxItem>
+                    <ComboBoxItem>Adiabatic</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox Grid.Column="2" Grid.Row="1" Name="ComboBoxDesignerTemperatureTypeE" SelectedIndex="1" SelectionChanged="ComboBoxDesignerTemperatureTypeE_SelectionChanged">
+                    <ComboBoxItem>Constant</ComboBoxItem>
+                    <ComboBoxItem>Adiabatic</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox Grid.Column="3" Grid.Row="1" Name="ComboBoxDesignerTemperatureTypeS" SelectedIndex="1" SelectionChanged="ComboBoxDesignerTemperatureTypeS_SelectionChanged">
+                    <ComboBoxItem>Constant</ComboBoxItem>
+                    <ComboBoxItem>Adiabatic</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox Grid.Column="4" Grid.Row="1" Name="ComboBoxDesignerTemperatureTypeW" SelectedIndex="1" SelectionChanged="ComboBoxDesignerTemperatureTypeW_SelectionChanged">
+                    <ComboBoxItem>Constant</ComboBoxItem>
+                    <ComboBoxItem>Adiabatic</ComboBoxItem>
+                </ComboBox>
+
+                <Label Grid.Column="0" Grid.Row="2" Margin="0,0,0,5">Value</Label>
+                <xctk:DoubleUpDown Name="DoubleUpDownTemperatureN" IsEnabled="False" Grid.Column="1" Grid.Row="2" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80" Margin="0,0,0,5"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownTemperatureE" IsEnabled="False" Grid.Column="2" Grid.Row="2" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80" Margin="0,0,0,5"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownTemperatureS" IsEnabled="False" Grid.Column="3" Grid.Row="2" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80" Margin="0,0,0,5"/>
+                <xctk:DoubleUpDown Name="DoubleUpDownTemperatureW" IsEnabled="False" Grid.Column="4" Grid.Row="2" Value="0.0" FormatString="N" CultureInfo="en" HorizontalAlignment="Center" Width="80" Margin="0,0,0,5"/>
+            </Grid>
+        </GroupBox>
+        <Button Name="ButtonGhostParticleSetupWindowApplyChanges" Width="100" Margin="300,10,0,0" HorizontalAlignment="Left" Click="ButtonGhostParticleSetupWindowApplyChanges_OnClick">Apply changes</Button>
+    </StackPanel>
+</Window>

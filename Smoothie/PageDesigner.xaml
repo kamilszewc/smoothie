@@ -1,0 +1,285 @@
+﻿<Page x:Class="Smoothie.PageDesigner"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:oxy="http://oxyplot.codeplex.com"
+      xmlns:local="clr-namespace:Smoothie"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+	Title="PageDesigner">
+
+    
+    
+    <DockPanel Background="White">
+        <WrapPanel DockPanel.Dock="Top" Background="Tomato">
+            <Button Content="New" Width="100" Margin="5,5,5,5" Click="ButtonDesignerNewFile_Clicked"/>
+            <Button Content="Open" Width="100" Margin="5,5,5,5" Click="ButtonDesignerOpenFile_Clicked"/>
+            <Button Content="Save As" Width="60" Margin="5,5,0,5" Click="ButtonDesignerSaveFileAs_Clicked"/>
+            <Button Content="Save" Width="40" Margin="0,5,5,5" Click="ButtonDesignerSaveFile_Clicked"/>
+            <TextBlock Name="LabelFileName" Foreground="White" Margin="20,7,0,6"></TextBlock>
+        </WrapPanel>
+        
+        <StackPanel DockPanel.Dock="Left" Background="SteelBlue">
+            <WrapPanel Margin="5,3,5,0">
+                <Label>Number of dimensions:</Label>
+                <ComboBox Name="ComboBoxDesignerDimensions" SelectedIndex="0" SelectionChanged="ComboBoxDesignerDimensions_SelectionChanged">
+                    <!--<ComboBoxItem Name="ComboBoxItemDesignerDimensions1D">1D</ComboBoxItem>-->
+                    <ComboBoxItem Name="ComboBoxItemDesignerDimensions2D">2D</ComboBoxItem>
+                    <ComboBoxItem Name="ComboBoxItemDesignerDimensions3D" IsEnabled="False">3D</ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+            <GroupBox Header="Domain" Margin="5,0,5,0">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="1" Grid.Row="0" Margin="0,-5,0,0">X</Label>
+                        <Label Grid.Column="2" Grid.Row="0" Margin="0,-5,0,0">Y</Label>
+                        <Label Grid.Column="3" Grid.Row="0" Margin="0,-5,0,0">Z</Label>
+                        <Label Grid.Column="0" Grid.Row="1" Margin="0, 0,0,0">Size of domain</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainSizeX" Grid.Column="1" Grid.Row="1" Value="1.0" Minimum="0.0" FormatString="N" CultureInfo="en" ValueChanged="DomainValues_Changed"/>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainSizeY" Grid.Column="2" Grid.Row="1" Value="1.0" Minimum="0.0" FormatString="N" CultureInfo="en" ValueChanged="DomainValues_Changed"/>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainSizeZ" IsEnabled="False" Grid.Column="3" Grid.Row="1" Value="1.0" Minimum="0.0" FormatString="N" CultureInfo="en" ValueChanged="DomainValues_Changed"/>
+                        <Label Grid.Column="0" Grid.Row="2">Number of cells</Label>
+                        <xctk:IntegerUpDown Name="IntegerUpDownNumOfCellsX" Grid.Column="1" Grid.Row="2" Value="16" Minimum="8" ValueChanged="DomainValues_Changed"/>
+                        <xctk:IntegerUpDown Name="IntegerUpDownNumOfCellsY" Grid.Column="2" Grid.Row="2" Value="16" Minimum="8" ValueChanged="DomainValues_Changed"/>
+                        <xctk:IntegerUpDown Name="IntegerUpDownNumOfCellsZ" IsEnabled="False" Grid.Column="3" Grid.Row="2" Value="16" Minimum="8" ValueChanged="DomainValues_Changed"/>
+                        
+                    </Grid>
+                    
+                    <Button Name="ButtonDesignerValidation" Margin="0,5,0,0" Click="ButtonDesignerValidation_Clicked">Validation</Button>
+                </StackPanel>    
+            </GroupBox>
+
+            <GroupBox Header="Parameters" Margin="5,0,5,0">
+                <StackPanel>
+                
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="186"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!--<Label Grid.Column="0" Grid.Row="0" Margin="0,5,0,0">h/dr</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownHDR" Margin="0,5,0,0" Grid.Column="1" Grid.Row="0" Value="2.0" Minimum="1.0" Maximum="3.0" Increment="0.1" FormatString="N" CultureInfo="en"/>-->
+
+                        <Label Grid.Column="0" Grid.Row="1">Domain boundaries</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="1" Name="ComboBoxDesignerDomainBoundaries" SelectedIndex="1" SelectionChanged="ComboBoxDesignerDomainBoundaries_SelectionChanged">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Ghost particles</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Grid.Column="0" Grid.Row="2">Domain periodicity</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Name="ComboBoxDesignerDomainPeriodicity" SelectedIndex="0" SelectionChanged="ComboBoxDesignerDomainPeriodicity_SelectionChanged">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Left-right, up-down</ComboBoxItem>
+                            <ComboBoxItem>Left-right</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Grid.Column="0" Grid.Row="3">Ghost particles setup</Label>
+                        <Button Name="ButtonDesignerGhostParticleSetup" Grid.Column="1" Grid.Row="3" Click="ButtonDesignerGhostParticleSetup_OnClick">Setup</Button>
+
+                        <Label Grid.Column="0" Grid.Row="4">SPH formalizm</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="4" Name="ComboBoxDesignerFormalizm" SelectedIndex="0" SelectionChanged="ComboBoxDesignerFormalizm_SelectionChanged">
+                            <ComboBoxItem>Standard</ComboBoxItem>
+                            <ComboBoxItem>Colagrossi and Landrini (2003)</ComboBoxItem>
+                            <ComboBoxItem>Hu and Adams (2006)</ComboBoxItem>
+                            <ComboBoxItem>Szewc and Olejnik (2015)</ComboBoxItem>
+                        </ComboBox>
+                        
+                        <Label Grid.Column="0" Grid.Row="5">Surface tension</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="5" Name="ComboBoxDesignerSurfaceTension" SelectedIndex="0" SelectionChanged="ComboBoxDesignerSurfaceTension_SelectionChanged">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem IsEnabled="False">CSF Monaghan (1995)</ComboBoxItem>
+                            <ComboBoxItem>CSF Morris (2000)</ComboBoxItem>
+                            <ComboBoxItem>SSF Hu and Adams (2006)</ComboBoxItem>
+                        </ComboBox>
+                        
+                        <Label Grid.Column="0" Grid.Row="6">Interface correction</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="6" Name="ComboBoxDesignerInterfaceCorrection" SelectedIndex="0" SelectionChanged="ComboBoxDesignerInterfaceCorrection_SelectionChanged">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Szewc et al. (2014)</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Grid.Column="0" Grid.Row="7">Heat transfer</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="7" Name="ComboBoxDesignerHeatTransfer" SelectedIndex="0" SelectionChanged="ComboBoxDesignerHeatTransfer_SelectionChanged">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Cleary (1998)</ComboBoxItem>
+                        </ComboBox>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="62"/>
+                            <ColumnDefinition Width="62"/>
+                            <ColumnDefinition Width="62"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Grid.Column="0" Grid.Row="1">Acceleration</Label>
+                        <Label Grid.Column="1" Grid.Row="0">X</Label>
+                        <Label Grid.Column="2" Grid.Row="0">Y</Label>
+                        <Label Grid.Column="3" Grid.Row="0">Z</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainGravityX" Grid.Column="1" Grid.Row="1" Value="0.0" FormatString="N" CultureInfo="en" ValueChanged="DoubleUpDownDomainGravityX_ValueChanged"/>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainGravityY" Grid.Column="2" Grid.Row="1" Value="0.0" FormatString="N" CultureInfo="en" ValueChanged="DoubleUpDownDomainGravityY_ValueChanged"/>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainGravityZ" IsEnabled="False" Grid.Column="3" Grid.Row="1" Value="0.0" FormatString="N" CultureInfo="en"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="186"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0">Hydrostatic pressure</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="0" Name="ComboBoxDesignerHydrostaticPressure" SelectedIndex="0" SelectionChanged="ComboBoxDesignerHydrostaticPressure_SelectionChanged">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Szewc et al. (2011)</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Grid.Column="0" Grid.Row="1">Time step type</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="1" Name="ComboBoxDesignerTimeStepType" SelectedIndex="0" SelectionChanged="ComboBoxDesignerTimeStepType_SelectionChanged">
+                            <ComboBoxItem>Static</ComboBoxItem>
+                            <ComboBoxItem>Dynamic</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Grid.Column="0" Grid.Row="2">Time step</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainTimeStep" Grid.Column="1" Grid.Row="2" Width="100" HorizontalAlignment="Right" Value="0.0001" Increment="0.0001" Minimum="0.0"  FormatString="G7" CultureInfo="en" ValueChanged="DoubleUpDownDomainTimeStep_ValueChanged"/>
+
+                        <Label Grid.Column="0" Grid.Row="3">Simulation time</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainSimulationTime" Grid.Column="1" Grid.Row="3" Width="100" HorizontalAlignment="Right" Value="1.0" Increment="0.1" Minimum="0.0" FormatString="G7" CultureInfo="en" ValueChanged="DoubleUpDownDomainSimulationTime_ValueChanged"/>
+
+                        <Label Grid.Column="0" Grid.Row="4">Result save interval</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainResultSaveInterval" Grid.Column="1" Grid.Row="4" Width="100" HorizontalAlignment="Right" Value="0.01" Increment="0.01" Minimum="0.0" FormatString="G7" CultureInfo="en" ValueChanged="DoubleUpDownDomainResultSaveInterval_ValueChanged"/>
+
+                        <Label Grid.Column="0" Grid.Row="5">h/dr</Label>
+                        <xctk:DoubleUpDown Name="DoubleUpDownDomainHDR" Grid.Column="1" Grid.Row="5" Width="100" HorizontalAlignment="Right" Value="2.0" Maximum="3.0" Increment="0.1" Minimum="1.0" FormatString="N" CultureInfo="en" ValueChanged="DoubleUpDownDomainHDR_ValueChanged"/>
+                    </Grid>
+
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Right" Background="SteelBlue">
+            <GroupBox Header="Phases" Margin="5,0,5,0">
+                <StackPanel>
+                    <ListBox Name="ListBoxDesignerPhases" SelectionMode="Single" SelectionChanged="ListBoxDesignerPhases_SelectionChanged" Width="200" Height="200">
+                    </ListBox>
+                    <WrapPanel>
+                        <Button Name="ButtonDesignerAddPhase" Click="ButtonDesignerAddPhase_Clicked">Add</Button>
+                        <Button Name="ButtonDesignerDelPhase" Click="ButtonDesignerDelPhase_Clicked">Del</Button>
+                    </WrapPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Name="GroupBoxDesignerPhaseToolbox" Header="Phase toolbox" Margin="5,0,5,0">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                    
+                        <Label Grid.Column="0" Grid.Row="0">Phase name</Label>
+                        <TextBox Name="TextBoxPhaseName" Grid.Column="1" Grid.Row="0" TextChanged="TextBoxPhaseName_TextChanged"></TextBox>
+
+                        <Label Grid.Column="0" Grid.Row="1">Color</Label>
+                        <xctk:ColorPicker Name="ColorPickerEditPhase" Grid.Column="1" Grid.Row="1" SelectedColorChanged="ColorPickerEditPhase_SelectedColorChanged"></xctk:ColorPicker>
+
+                        <Label Grid.Column="0" Grid.Row="2">Fields</Label>
+                        <Button Name="ButtonPhaseEditFields" Grid.Column="1" Grid.Row="2" Click="ButtonPhaseEditFields_Click">Edit</Button>
+                    
+                        <Label Grid.Column="0" Grid.Row="3">Position</Label>
+                    </Grid>
+                    
+                    <TextBox Name="TextBoxPhasePosition" TextWrapping="Wrap" IsEnabled="False" Height="100" Width="200">Whole domain</TextBox>
+                
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Name="ButtonPhasePosition" Grid.Column="1" Grid.Row="0" Click="ButtonPhasePosition_Clicked">Edit</Button>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Name="GroupBoxDesignerInterPhase" Header="Inter-phase coefficients" Margin="5,0,5,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                
+                    <Label Grid.Column="0" Grid.Row="0">Surface-tension</Label>
+                    <Button Name="ButtonDesignerSurfaceTension" Grid.Column="1" Grid.Row="0" IsEnabled="False" Click="ButtonDesignerSurfaceTension_Click">Setup</Button>
+
+                    <Label Grid.Column="0" Grid.Row="1">Interface correction</Label>
+                    <Button Name="ButtonDesignerInterfaceCorrection" Grid.Column="1" Grid.Row="1" IsEnabled="False" Click="ButtonDesignerInterfaceCorrection_Click">Setup</Button>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+
+        <WrapPanel DockPanel.Dock="Bottom" Background="SteelBlue">
+            <TextBlock Name="TextBlockN" Margin="10,3,15,3">N=...</TextBlock>
+            <TextBlock Name="TextBlockH" Margin="10,3,15,3">h=...</TextBlock>
+        </WrapPanel>
+
+        <Viewbox RenderOptions.BitmapScalingMode="HighQuality">
+            <oxy:Plot x:Name="Plot1"  Model="{Binding PlotModel}" Width="500" Height="500" Margin="20,20,20,20"/>
+        </Viewbox>
+    </DockPanel>
+    <!--<Page.DataContext>
+        <local:PlotModelDesigner/>
+    </Page.DataContext>-->
+</Page>

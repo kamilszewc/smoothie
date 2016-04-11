@@ -1,0 +1,96 @@
+﻿<Page x:Class="Smoothie.PageInformations"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+	Title="PageInformations">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Column="0" Grid.Row="0" Margin="15,15,15,15" Height="Auto">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <Image Source="Images\smoothie_logo.png" Width="330" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                <TextBlock Name="TextBlockVersion" TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+                <TextBlock TextWrapping="Wrap"><Run Text="Copyright (c) 2014"/><Run Text="-2015"/><Run Text=" Kamil Szewc"/><LineBreak/><Run Text="Institute of Fluid-Flow Machinery, Polish Academy of Sciences"/><LineBreak/><Run Text="All right reserved."/><LineBreak/></TextBlock>
+
+                <TextBlock FontWeight="Bold" Margin="0,0,0,10">License:</TextBlock>
+                <ScrollViewer Width="350" Height="270" HorizontalAlignment="Left">
+                    <TextBlock Name="TextBlockLicense" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                </ScrollViewer>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock FontWeight="Bold" Margin="0,0,0,10">Acknowledgements:</TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                    
+                    The research, on the basis of which created this software, 
+                    has been founded by Ministry of Science and Higher Education (Poland)
+                    via grant Iuventus Plus 0479/IP2/2013/72.
+                    <LineBreak/><LineBreak/>
+                    The author is also indebted to the Foundation for Polish Science (FNP)
+                    for research scholarships START 2012 and 2013.
+                    <LineBreak/><LineBreak/>
+                    Thanks to Katarzyna Walczewska-Szewc for help with graphics design.
+                    
+                    <LineBreak/><LineBreak/>
+                </TextBlock>
+
+                <TextBlock FontWeight="Bold" Margin="0,0,0,10">Third-party libraries:</TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                    <Hyperlink NavigateUri="https://wpftoolkit.codeplex.com/">Extended WPF Toolkit Community Edition</Hyperlink>, ver.2.1.0, Microsoft Public License.
+                    <LineBreak/>
+                    <Hyperlink NavigateUri="http://oxyplot.codeplex.com/">OxyPlot</Hyperlink>, ver.2014.1.266.1, MIT License.
+                    <LineBreak/>
+                    <Hyperlink NavigateUri="https://github.com/FlorianRappl/YAMP">Yet Another Math Parser</Hyperlink>, ver.1.3.0, BSD 3-Clause License.
+                    <LineBreak/>
+                    <Hyperlink NavigateUri="http://www.grinninglizard.com/tinyxml2/index.html">TinyXML-2</Hyperlink>, ver.2.1.0, zlib License.
+                    <LineBreak/>
+                    
+                    
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock FontWeight="Bold" Margin="10,0,0,10">Computational devices:</TextBlock>
+                <WrapPanel>
+                    <StackPanel Margin="10,0,10,0">
+                        <TextBlock FontWeight="Bold" Margin="0,0,0,10">CPUs:</TextBlock>
+                        <TextBlock Name="TextBlockCPUInfo" TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,0">
+                        <TextBlock FontWeight="Bold" Margin="0,0,0,10">GPUs:</TextBlock>
+                        <TextBlock Name="TextBlockGPUInfo" TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+
+
+        </Grid>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="Tomato">
+            <Label HorizontalAlignment="Center" FontSize="18" Foreground="White" Margin="5,5,5,5" Content="Development version, BSD 3-Clause License"/>
+        </StackPanel>
+    </Grid>
+</Page>

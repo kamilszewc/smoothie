@@ -1,0 +1,98 @@
+﻿<Page x:Class="Smoothie.PagePostprocessing"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:oxy="http://oxyplot.codeplex.com"
+      xmlns:local="clr-namespace:Smoothie"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="600"
+	Title="Post-processing">
+
+    <DockPanel Background="Tomato">
+        <WrapPanel DockPanel.Dock="Top" Background="Tomato">
+            <Button Content="Open" Width="100" Margin="5,5,5,5" Click="ButtonPostProcessingOpenFile_Clicked"/>
+            <TextBlock Name="LabelFileName" Foreground="White" Margin="20,7,0,6"></TextBlock>
+        </WrapPanel>
+        <TabControl DockPanel.Dock="Top">
+            <TabItem Header="Fields">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Background="SteelBlue" Width="120">
+                        <Label Foreground="White">Maps:</Label>
+                        <Button Name="ButtonXVelocity" Margin="5,3,5,2" IsEnabled="False" Click="ButtonXVelocity_Click">X-velocity</Button>
+                        <Button Name="ButtonYVelocity" Margin="5,2,5,2" IsEnabled="False" Click="ButtonYVelocity_Click">Y-velocity</Button>
+                        <Button Name="ButtonVelocity" Margin="5,2,5,2" IsEnabled="False" Click="ButtonVelocity_Click">Velocity</Button>
+                        <Button Name="ButtonDensity" Margin="5,2,5,2" IsEnabled="False" Click="ButtonDensity_Click">Density</Button>
+                        <Button Name="ButtonPressure" Margin="5,2,5,2" IsEnabled="False" Click="ButtonPressure_Click">Pressure</Button>
+                        <Button Name="ButtonTemperature" Margin="5,2,5,2" IsEnabled="False" Click="ButtonTemperature_Click">Temperature</Button>
+                        <Label Foreground="White">Particles:</Label>
+                        <Button Name="ButtonParticlesPosition" Margin="5,2,5,2" IsEnabled="False" Click="ButtonParticlesPosition_Click">Position</Button>
+                        <Button Margin="5,2,5,2" IsEnabled="False">Velocity</Button>
+                        <Button Margin="5,2,5,2" IsEnabled="False">Surface tension</Button>
+                    </StackPanel>
+                    
+                    <Grid DockPanel.Dock="Bottom" Background="SteelBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Name="ButtonSaveData" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="5,5,5,5" Width="100">Save data</Button>
+                        <Button Name="ButtonSaveImage" Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="5,5,5,5" Width="100">Save image</Button>
+                    </Grid>
+                    
+                    <StackPanel DockPanel.Dock="Right" Width="150" Background="SteelBlue">
+                        <Label Foreground="White">Range:</Label>
+                        <Grid Margin="0,0,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Foreground="White">X</TextBlock>
+                            <TextBlock Grid.Column="2" Grid.Row="0" Foreground="White">Y</TextBlock>
+                            <Image Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Source="Images\bSW.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            <xctk:DoubleUpDown Grid.Column="1" Grid.Row="1" Name="DoubleUpDownLBX" IsEnabled="False" Value="0.0" FormatString="N" CultureInfo="en" ValueChanged="DoubleUpDownLBX_ValueChanged"/>
+                            <xctk:DoubleUpDown Grid.Column="2" Grid.Row="1" Name="DoubleUpDownLBY" IsEnabled="False" Value="0.0" FormatString="N" CultureInfo="en" ValueChanged="DoubleUpDownLBY_ValueChanged"/>
+                            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="Images\bSE.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            <xctk:DoubleUpDown Grid.Column="1" Grid.Row="2" Name="DoubleUpDownRBX" IsEnabled="False" Value="0.0" FormatString="N" CultureInfo="en"/>
+                            <TextBlock Grid.Column="2" Grid.Row="2" Name="TextBlockRBY" Foreground="White" Margin="7,2,2,2">0.0</TextBlock>
+                            <Image Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Source="Images\bNW.png" Width="20" Margin="3,3,3,3" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            <TextBlock Grid.Column="1" Grid.Row="3" Name="TextBlockLTX" Foreground="White" Margin="7,2,2,2">0.0</TextBlock>
+                            <xctk:DoubleUpDown Grid.Column="2" Grid.Row="3" Name="DoubleUpDownLTY" IsEnabled="False" Value="0.0" FormatString="N" CultureInfo="en"/>
+                        </Grid>
+                        <Label Foreground="White">Resolution:</Label>
+                        <WrapPanel>
+                            <Label Foreground="White">NX</Label>
+                            <xctk:IntegerUpDown Name="IntegerUpDownNX" IsEnabled="False" Value="16" Minimum="2" CultureInfo="en"/>
+
+                            <Label Foreground="White">NY</Label>
+                            <xctk:IntegerUpDown Name="IntegerUpDownNY" IsEnabled="False" Value="16" Minimum="2" CultureInfo="en"/>
+                        </WrapPanel>
+                        
+                        <Button Name="ButtonUpdatePlot" Margin="5,5,5,5" IsEnabled="False" Click="ButtonUpdatePlot_Click">Update plot</Button>
+                        <Button Name="ButtonSetDefaultValues" Margin="5,5,5,5" IsEnabled="False" Click="ButtonSetDefaultValues_Click">Set default values</Button>
+                    </StackPanel>
+
+                    <Viewbox RenderOptions.BitmapScalingMode="HighQuality">
+                        <oxy:Plot x:Name="PlotPostProcessing"  Model="{Binding PlotModelPP}" Width="500" Height="500" Margin="20,20,20,20"/>
+                    </Viewbox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Cross-sections" IsEnabled="False">
+            </TabItem>
+            <TabItem Header="Points" IsEnabled="False">
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Page>

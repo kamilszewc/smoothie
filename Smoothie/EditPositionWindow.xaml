@@ -1,0 +1,14 @@
+﻿<Window x:Class="Smoothie.EditPositionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Position editor" Height="370" Width="300">
+    <StackPanel Background="AliceBlue" Margin="3,3,3,3">
+        <Label>Position:</Label>
+        <TextBox Name="TextBoxEditPositionWindow" Height="200" TextWrapping="Wrap" Text=""/>
+        <TextBlock>Position operators: x y</TextBlock>
+        <TextBlock>Math operators: + - * / ^</TextBlock>
+        <TextBlock>Comparison operators: == &#62;  &#60; </TextBlock>
+        <TextBlock>Logical operators: ||(or) &#038;&#038;(and) !(neg)</TextBlock>
+        <Button Name="ButtonEditPositionApplyChanges" HorizontalAlignment="Left" Margin="180,7,10,10" Click="ButtonEditPositionApplyChanges_Clicked">Apply changes</Button>
+    </StackPanel>
+</Window>
