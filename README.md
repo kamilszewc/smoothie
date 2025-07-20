@@ -1,6 +1,7 @@
-Smoothie - Smoothed Particle Hydrodynamics solver created for educational purposes (2D with GUI)
+# Smoothie - Smoothed Particle Hydrodynamics solver created for educational purposes (2D with GUI) - INACTIVE
+**The project has been inactive since 2014.**
 
-Copyright (c) 2013-2015, Kamil Szewc, Multiphase Flow Department, Institute of Fluid-Flow Machinery, Polish Academy of Sciences in Gdańsk, Poland.
+Copyright (c) 2013-2014, Kamil Szewc, Multiphase Flow Department, Institute of Fluid-Flow Machinery, Polish Academy of Sciences in Gdańsk, Poland.
 All rights reserved.
 
 Acknowledgements:
